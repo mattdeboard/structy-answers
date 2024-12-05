@@ -44,16 +44,16 @@ const minimumIsland = grid => {
 
 const exploreIsland = (grid, graph, src, visited) => {
   let size = 1;
-  const queue = [src];
+  const stack = [src];
 
-  while (queue.length) {
-    const node = queue.pop();
+  while (stack.length) {
+    const node = stack.pop();
 
     for (const neighbor of graph[node]) {
       const nNode = JSON.stringify(neighbor);
       if (grid[neighbor[0]][neighbor[1]] === 'L' && !visited.has(nNode)) {
         visited.add(nNode);
-        queue.push(nNode);
+        stack.push(nNode);
         size++;
       }
     }
