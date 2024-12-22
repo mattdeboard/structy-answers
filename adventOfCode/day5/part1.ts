@@ -137,8 +137,9 @@ function pagesAreOrdered(
   if (key in memo) return memo[key];
   const [page, ...rest] = pages;
 
-  for (let pg of rest) {
-    if (!pagesAreOrdered(graph, rest, memo) || graph[page].has(pg)) {
+  for (let i = 0; i < rest.length; i++) {
+    const pg = rest[i];
+    if (!pagesAreOrdered(graph, rest.slice(i), memo) || graph[page].has(pg)) {
       memo[rest.join(',')] = false;
       return false;
     }
